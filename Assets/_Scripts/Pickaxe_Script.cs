@@ -6,7 +6,9 @@ public class Pickaxe_Script : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            col.GetComponent<InventoryScript>().PickupPickaxe();
             Destroy(gameObject);
+            Debug.Log("Pickaxe picked up!");
         }
     }
 }

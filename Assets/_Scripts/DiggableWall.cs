@@ -5,11 +5,16 @@ public class DiggableWall : MonoBehaviour
 {
     private bool hasAxe;
     private bool playerNearby;
+    private InventoryScript inventoryScript;
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
+        {
             playerNearby = true;
+            inventoryScript = col.GetComponent<InventoryScript>();
+        }
+
     }
 
     private void OnTriggerExit(Collider col)
@@ -22,7 +27,8 @@ public class DiggableWall : MonoBehaviour
     {
         if (playerNearby &&
             Mouse.current != null &&
-            Mouse.current.leftButton.wasPressedThisFrame)
+            Mouse.current.leftButton.wasPressedThisFrame &&
+            inventoryScript.hasPickaxe)
         {
             Destroy(gameObject);
         }
